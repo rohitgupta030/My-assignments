@@ -1,0 +1,78 @@
+#include<stdio.h>
+
+int heapsort(int a[] , int n);
+int heapify(int a[], int n , int i);
+int swap(int* x , int* y);
+
+int main(){
+
+    int a[200],n;
+    printf("Please enter size of array to  be  sorted\n");
+    scanf("%d",& n);
+    printf("Please enter %d elements of array\n", n);
+    int i;
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",&a[i]);
+    }
+
+    heapsort(a,n);
+
+    printf("shorted arrays are as follows \n");
+    
+    for(i=0; i<n; i++)
+    {
+    printf("%d\t", a[i]);
+    }
+
+}
+
+
+int heapsort(int a[] , int n){
+
+    int i;
+    for(i=n/2-1 ; i>=0; i--)
+      heapify(a ,n, i);
+
+    for(i=n-1; i>=0; i--){
+      swap(&a[0] , &a[i]);
+      heapify(a, i , 0);
+    }
+}
+
+int heapify(int a[] , int n, int i){
+
+    int largest;
+    largest=i;
+    int lchild , rchild;
+
+    lchild=2*i+1;
+    rchild=2*i+2;
+
+    while (lchild<n && a[lchild]>a[largest]){
+
+        largest=lchild;
+    }
+
+    while(rchild<n && a[rchild]>a[largest]){
+
+        largest=rchild;
+    }
+
+    if (largest!=i){
+
+        swap(&a[largest] , &a[i]);
+        heapify(a , n , largest);
+    }
+
+
+}
+
+int swap (int* x , int* y){
+
+    int temp;
+    temp=*x;
+    *x=*y;
+    *y=temp;
+
+}

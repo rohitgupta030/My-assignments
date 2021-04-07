@@ -1,0 +1,77 @@
+#include<stdio.h>
+
+void mergesort( int a[] , int l , int h);
+void merging(int a[] , int l , int m ,int n, int h);
+
+int main(){
+     int a[100],l,h;
+     l=0;
+     printf("PLease enter size of aray to be sorted\n ");
+     scanf("%d",&h);
+     printf("Please enter %d elements os array\n", h);
+     int i ;
+     for(i=0;i<h;i++)
+     {
+        scanf("%d",&a[i]);
+     }
+     
+     mergesort(a , l , h-1);
+
+
+      printf("array after sorting by using Merge Sort\n");
+      for (i=0; i<h; i++)
+      {
+      printf("%d\t", a[i]);
+      }
+      
+
+      return 0;
+
+}
+
+void mergesort(int a[], int l , int h){
+   if(l<h){
+    int mid ;
+    mid=(l+h)/2;
+
+    mergesort(a, l , mid );
+    mergesort(a , mid+1 , h);
+
+    merging(a , l , mid, mid+1 , h) ;
+
+   }
+}
+
+
+void merging(int a[] , int l , int m , int n , int h ){
+
+    int temp[20];
+    int i , j , k;
+    i=l;
+    j=n;
+    k=0;
+
+    while(i<=m && j<=h){
+
+        if(a[i]<a[j])
+           temp[k++]=a[i++];
+
+        else
+            temp[k++]=a[j++];
+    }
+
+    while(i<=m)
+       temp[k++]=a[i++];
+
+
+    while(j<=h)
+       temp[k++]=a[j++];
+
+
+       for(i=l,j=0;i<=h;i++,j++)
+    a[i]=temp[j];
+
+
+
+
+}

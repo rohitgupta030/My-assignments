@@ -1,0 +1,6 @@
+import math
+from scipy import stats
+A = stats.norm(3, math.sqrt(16)) # Declare A to be a normal random variable
+print(A.pdf(4))       			 # f(3), the probability density at 3
+print(A.cdf(2))       			 # F(2), which is also P(Y < 2)
+print(A.rvs())        			 # Get a random sample from A
